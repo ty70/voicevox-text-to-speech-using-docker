@@ -1,0 +1,28 @@
+# 仮想環境ディレクトリを無視（名前が venv の場合）
+venv/
+
+# tempは無視
+temp/
+
+# output.wavを無視
+output.wav
+
+# voicevox_engine-linux-nvidia-x64を無視
+voicevox_engine-linux-nvidia-*
+
+# voicevox, voicevox_engineフォルダは無視
+voicevox/
+voicevox_engine/
+
+# 他の一般的な Python 開発用無視リスト（推奨）
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.sqlite3
+*.log
+*.db
+*.egg-info/
+.env
+.DS_Store
