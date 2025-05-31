@@ -1,101 +1,111 @@
 # VOICEVOX Text-to-Speech Web App with Streamlit using Docker
 
-このプロジェクトは、VOICEVOX エンジンを Docker で実行、利用して日本語テキストから音声を合成する Streamlit ベースの Web アプリケーション です。
+This project is a Streamlit-based web application that synthesizes Japanese speech from text using the VOICEVOX engine, which is run inside Docker.
 
 ---
 
-## ✨ 特徴
+## ✨ Features
 
-* Streamlit Web UI により、簡単にブラウザ上で音声合成が可能
+* Easy-to-use voice synthesis through a Streamlit web UI in your browser
 
-* VOICEVOXエンジンは Dockerで実行、利用(nvidia対応のDockerがインストールされている事が前提)
+* The VOICEVOX engine runs in Docker (requires Docker with NVIDIA GPU support)
 
-* 話者の選択、音声再生、ダウンロード機能を搭載
+* Includes speaker selection, audio playback, and download functionality
 
 ---
 
-## ⚡ 実行方法
+## ⚡ How to Run
 
-### 1. VOICEVOXエンジンをDocker上で構築する
+### 1. Build the VOICEVOX engine in Docker
 
-#### Dockerイメージの取得、起動
+#### Pull and run the Docker image
+
 ```bash
 docker pull voicevox/voicevox_engine:nvidia-latest
 docker run --rm --gpus all -p '127.0.0.1:50021:50021' voicevox/voicevox_engine:nvidia-latest
 ```
-これでVOICEVOXエンジンが起動します。
 
-### 2. 必要パッケージのインストール
-別のターミナルにて
+This will start the VOICEVOX engine.
+
+### 2. Install required Python packages
+
+In a separate terminal:
+
 ```bash
 pip install -r requirements.txt
 ```
 
-または：
+Or:
 
 ```bash
 pip install streamlit requests
 ```
 
-### 3. Streamlit アプリ起動
+### 3. Launch the Streamlit app
+
 ```bash
 streamlit run app.py
 ```
-正常に起動するとWebページ上で操作可能になります。
 
-### 4. VOICEVOX ENGINE を停止する方法
+Once running, the app will be accessible in your web browser.
+
+### 4. Stop the VOICEVOX ENGINE
+
 ```bash
 docker stop `docker ps | grep voicevox | awk '{print $1}'`
 ```
 
-必要に応じてコンテナを削除するには：
+To remove the container image if needed:
+
 ```bash
 docker rmi `docker images | grep voicevox | awk '{print $3}'`
 ```
----
-
-## 🌐 アプリ機能
-
-* 文本入力: 任意の日本語テキスト
-
-* 話者選択: 四国めたん、ずんだもん、青山龍星など（speaker ID使用）
-
-* 音声生成: VOICEVOX APIを使用
-
-* 再生・ダウンロード: WAV形式で提供
 
 ---
 
-## 🛠 構成
+## 🌐 App Features
+
+* Text input: Any Japanese text
+
+* Speaker selection: Choose from Shikoku Metan, Zundamon, Ryusei Aoyama, etc. (via speaker ID)
+
+* Speech generation: Uses the VOICEVOX API
+
+* Playback and download: Provided in WAV format
+
+---
+
+## 🛠 Structure
 
 ```
 .
-├─ app.py            # Streamlitアプリ本体
-├─ LICENSE           # ライセンス
-├─ README.md         # このファイル
-├─ requirements.txt  # 必要パッケージ
-└─ utils.py          # 音声生成関数
+├─ app.py            # Main Streamlit app
+├─ LICENSE           # License
+├─ README_ja.md      # japanese version
+├─ README.md         # This file
+├─ requirements.txt  # Required packages
+└─ utils.py          # Voice generation functions
 ```
+
 ---
 
-## 📅 TODO / 拡張案
+## 🗕 TODO / Future Plans
 
-* 速度・ピッチ調整
-* 複数話者一括生成
-* 入力履歴の保存
+* Speed and pitch adjustment
+* Batch generation with multiple speakers
+* Save input history
 
 ---
 
 ## ✅ LICENSE
 
-このプロジェクトは [MIT ライセンス](./LICENSE)で提供されます。
-VOICEVOXエンジンの使用については、
-VOICEVOX公式のライセンス・利用規約に従ってください。
+This project is licensed under the [MIT License](./LICENSE).
+Please refer to VOICEVOX's official license and terms of use for using the VOICEVOX engine.
 
 ---
 
 ## 🙏 Special Thanks
 
-* VOICEVOX開発チーム
+* The VOICEVOX development team
 * [VOICEVOX ENGINE](https://github.com/VOICEVOX/voicevox_engine)
-* [Hiroshiba氏](https://github.com/hiroshiba)
+* [Hiroshiba](https://github.com/hiroshiba)
